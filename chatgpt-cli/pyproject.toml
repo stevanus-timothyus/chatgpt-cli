@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+ 
+[project]
+name = "groq-chat-cli"
+version = "0.1.0"
+description = "A command-line chat assistant for Groq models: chat, speech-to-text, text-to-speech"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "groq",
+    "prompt_toolkit>=3.0",
+    "python-dotenv>=1.0",
+]
+ 
+[project.optional-dependencies]
+# Only used for rough pre-flight token estimates; the app falls back to a
+# characters/4 heuristic when it is not installed.
+tokens = ["tiktoken"]
+dev = ["pytest", "ruff"]
+ 
+[project.scripts]
+groqchat = "groq_chat.main:main"
+ 
+[tool.setuptools.packages.find]
+where = ["src"]
+ 
+[tool.ruff]
+line-length = 100
+target-version = "py311"
